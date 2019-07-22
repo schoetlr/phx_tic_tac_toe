@@ -1,0 +1,16 @@
+<h1>Game Show</h1>
+
+<p>player 1: <%= @game.player_one_name %></p>
+<p>player 2: <%= @game.player_two_name %></p>
+
+<%= form_for @move_changeset, move_path(@conn, [only: [:create]]), fn f -> %>
+  <label>
+    Row(0-2): <%= text_input f, :row %>
+  </label>
+
+  <label>
+    Col(0-2): <%= text_input f, :col %>
+  </label>
+
+  <%= submit "Submit" %>
+<% end %>
