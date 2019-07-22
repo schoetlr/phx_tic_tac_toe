@@ -1,1 +1,13 @@
 <h1>Game index</h1>
+
+<%= form_for @changeset, game_path(@conn, :create), fn f -> %>
+  <label>
+    Player One Name: <%= text_input f, :player_one_name %>
+  </label>
+
+  <label>
+    Player Two Name: <%= text_input f, :player_two_name %>
+  </label>
+
+  <%= submit "Submit" %>
+<% end %>
