@@ -20,7 +20,7 @@ defmodule PhxTicTacToeWeb.GameController do
 
   def show(conn, %{ "id" => id}) do 
     game = Repo.get(Game, id)
-    move_changeset = Move.changeset(%Move{})
+    move_changeset = Move.changeset(%Move{game_id: id})
 
     render conn, "show.html", game: game, move_changeset: move_changeset
   end

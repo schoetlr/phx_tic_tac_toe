@@ -12,5 +12,7 @@
     Col(0-2): <%= text_input f, :col %>
   </label>
 
+  <%= hidden_input f, :game_id  %>
+
   <%= submit "Submit" %>
 <% end %>
