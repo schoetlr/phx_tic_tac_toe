@@ -6,8 +6,9 @@ defmodule PhxTicTacToeWeb.GameController do
 
   def index(conn, _params) do
     changeset = Game.changeset(%Game{})
-    
-    render conn, "index.html", changeset: changeset
+    games = Game.get_index
+
+    render conn, "index.html", changeset: changeset, games: games
   end
 
   def create(conn, %{ "game" => game }) do 
