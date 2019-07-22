@@ -20,7 +20,7 @@ defmodule PhxTicTacToe.Game do
     |> validate_required([:player_one_name, :player_two_name])
   end
 
-  def get_index do 
+  def games do 
     query = from g in Game, 
             select: g.id, g.player_one_name, g.player_two_name,
             order_by: [desc: g.inserted_at]
