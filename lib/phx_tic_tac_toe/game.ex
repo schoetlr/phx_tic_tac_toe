@@ -3,7 +3,9 @@ defmodule PhxTicTacToe.Game do
   import Ecto.Changeset
   alias PhxTicTacToe.Repo
   alias PhxTicTacToe.Game
+  alias PhxTicTacToe.Move
   import Ecto.Query
+  import Ecto.Queryable
 
   schema "games" do
     field :player_one_name, :string
@@ -29,5 +31,13 @@ defmodule PhxTicTacToe.Game do
 
 
     Repo.all(query)
+  end
+
+  def moves(game_id) do 
+    #Repo.get(Game, game_id) |> preload(:moves) 
+
+    #Repo.all(from g in Game, where: g.id == ^game_id, preload: [:moves]) |> hd
+
+    Repo.all(from m in Move, where: m.id == ^game_id)
   end
 end

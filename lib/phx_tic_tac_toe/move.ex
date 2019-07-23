@@ -6,6 +6,7 @@ defmodule PhxTicTacToe.Move do
   schema "moves" do
     field :col, :integer
     field :row, :integer
+    field :player, :string
     belongs_to :game, PhxTicTacToe.Game
 
     timestamps()

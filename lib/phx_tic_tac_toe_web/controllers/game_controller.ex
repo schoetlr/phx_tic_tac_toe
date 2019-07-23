@@ -3,6 +3,7 @@ defmodule PhxTicTacToeWeb.GameController do
   alias PhxTicTacToe.Game
   alias PhxTicTacToe.Repo
   alias PhxTicTacToe.Move
+  alias PhxTicTacToe.Board
 
   def index(conn, _params) do
     changeset = Game.changeset(%Game{})
@@ -21,8 +22,16 @@ defmodule PhxTicTacToeWeb.GameController do
 
   def show(conn, %{ "id" => id}) do 
     game = Repo.get(Game, id)
-    move_changeset = Move.changeset(%Move{game_id: id})
+    #used for creating new moves
+    move_changeset = Move.changeset(%Move{game_id: id, player: game.current_player})
 
-    render conn, "show.html", game: game, move_changeset: move_changeset
+    #get moves to to create board from
+
+    #populate board and pass its presentation to the view/template
+    serial_board = Game.moves(id) |> Board.serialized
+
+    render conn, "show.html", game: game, move_changeset: move_changeset, board: serial_board, a_board: %{1 => %{1 => 2}}
   end
+
+  
 end

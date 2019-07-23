@@ -16,5 +16,10 @@
 
   <%= hidden_input f, :game_id  %>
 
+  <%= hidden_input f, :player  %>
+
   <%= submit "Submit" %>
 <% end %>
+
+
+<p><%= @board %></p>
