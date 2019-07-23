@@ -9,6 +9,7 @@ defmodule PhxTicTacToe.Game do
     field :player_one_name, :string
     field :player_two_name, :string
     field :winner, :string
+    has_many :moves, PhxTicTacToe.Move
 
     timestamps()
   end
