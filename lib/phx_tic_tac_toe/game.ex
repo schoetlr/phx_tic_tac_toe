@@ -19,7 +19,7 @@ defmodule PhxTicTacToe.Game do
   def changeset(game, attrs \\ %{}) do
     game
     |> cast(attrs, [:player_one_name, :player_two_name, :winner, :current_player])
-    |> validate_required([:player_one_name, :player_two_name, :current_player])
+    |> validate_required([:player_one_name, :player_two_name])
   end
 
   def games do 
