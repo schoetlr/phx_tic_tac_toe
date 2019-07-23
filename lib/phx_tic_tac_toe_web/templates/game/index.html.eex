@@ -14,6 +14,6 @@
 
 
 <%= for game <- @games do %>
-  <p><%= "#{game.player_one_name} #{game.player_two_name} #{game.winner}" %> 
+  <p><%= link("#{game.player_one_name} #{game.player_two_name} #{game.winner}", to: "/games/#{game.id}") %> 
 
 <% end %>
