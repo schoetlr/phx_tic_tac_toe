@@ -3,6 +3,8 @@
 <p>player 1: <%= @game.player_one_name %></p>
 <p>player 2: <%= @game.player_two_name %></p>
 
+<p>It is <%= @game.current_player %>'s turn.</p>
+
 <%= form_for @move_changeset, move_path(@conn, [only: [:create]]), fn f -> %>
   <label>
     Row(0-2): <%= text_input f, :row %>

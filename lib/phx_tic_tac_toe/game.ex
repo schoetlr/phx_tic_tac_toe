@@ -9,6 +9,7 @@ defmodule PhxTicTacToe.Game do
     field :player_one_name, :string
     field :player_two_name, :string
     field :winner, :string
+    field :current_player, :string
     has_many :moves, PhxTicTacToe.Move
 
     timestamps()
@@ -17,14 +18,15 @@ defmodule PhxTicTacToe.Game do
   @doc false
   def changeset(game, attrs \\ %{}) do
     game
-    |> cast(attrs, [:player_one_name, :player_two_name, :winner])
-    |> validate_required([:player_one_name, :player_two_name])
+    |> cast(attrs, [:player_one_name, :player_two_name, :winner, :current_player])
+    |> validate_required([:player_one_name, :player_two_name, :current_player])
   end
 
   def games do 
     query = from g in Game, 
             select: g,
             order_by: [desc: g.inserted_at]
+
 
     Repo.all(query)
   end
