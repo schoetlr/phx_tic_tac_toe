@@ -14,7 +14,7 @@ defmodule PhxTicTacToe.Move do
   @doc false
   def changeset(move, attrs \\ %{}) do
     move
-    |> cast(attrs, [:game_id, :row, :col])
-    |> validate_required([:game_id, :row, :col])
+    |> cast(attrs, [:game_id, :row, :col, :player])
+    |> validate_required([:game_id, :row, :col, :player])
   end
 end
