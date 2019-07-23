@@ -6,10 +6,14 @@ defmodule PhxTicTacToe.Board do
       2 => %{0 => "_", 1 => "_", 2 => "_"}}
   end
 
+  #maybe same problem as below
+  #ALSO, probably nothing in moves (query not working)
   def populated_board(moves) do
     board = empty_board
 
     Enum.each moves, fn move ->
+      IO.inspect move
+      IO.puts "in the loop"
       board = put_in(board, [move.row, move.col], move.player)
     end
 
