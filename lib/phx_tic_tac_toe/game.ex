@@ -22,7 +22,7 @@ defmodule PhxTicTacToe.Game do
 
   def games do 
     query = from g in Game, 
-            select: g.id, g.player_one_name, g.player_two_name,
+            select: g,
             order_by: [desc: g.inserted_at]
 
     Repo.all(query)

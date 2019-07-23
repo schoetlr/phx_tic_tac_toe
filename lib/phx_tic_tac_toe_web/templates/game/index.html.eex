@@ -11,3 +11,9 @@
 
   <%= submit "Submit" %>
 <% end %>
+
+
+<%= for game <- @games do %>
+  <p><%= "#{game.player_one_name} #{game.player_two_name} #{game.winner}" %> 
+
+<% end %>
