@@ -33,11 +33,9 @@ defmodule PhxTicTacToe.Game do
     Repo.all(query)
   end
 
-  def moves(game_id) do 
-    #Repo.get(Game, game_id) |> preload(:moves) 
-
-    #Repo.all(from g in Game, where: g.id == ^game_id, preload: [:moves]) |> hd
-
-    Repo.all(from m in Move, where: m.id == ^game_id)
+  def moves(game_id) do
+    game_id = String.to_integer(game_id) 
+    game = Repo.all(from g in Game, where: g.id == ^game_id, preload: [:moves]) |> hd
+    game.moves
   end
 end

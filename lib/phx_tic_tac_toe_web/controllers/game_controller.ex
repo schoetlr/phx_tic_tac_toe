@@ -28,6 +28,7 @@ defmodule PhxTicTacToeWeb.GameController do
     #get moves to to create board from
 
     #populate board and pass its presentation to the view/template
+    #DEBUG NOTE: id is a string of 3 here
     serial_board = Game.moves(id) |> Board.serialized
 
     render conn, "show.html", game: game, move_changeset: move_changeset, board: serial_board, a_board: %{1 => %{1 => 2}}
