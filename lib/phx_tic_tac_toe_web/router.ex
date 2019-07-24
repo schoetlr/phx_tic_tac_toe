@@ -18,7 +18,7 @@ defmodule PhxTicTacToeWeb.Router do
 
     get "/", PageController, :index
     resources "/games", GameController
-    post "/moves", MoveController, only: [:create]
+    resources "/moves", MoveController, only: [:create]
   end
 
   # Other scopes may use custom stacks.
