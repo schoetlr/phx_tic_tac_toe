@@ -25,16 +25,16 @@ defmodule PhxTicTacToe.Board do
     
   end
 
-  def serialize_board(board, row \\ 0, serial_board \\ "") do 
+  def serialized_board(board, row \\ 0, serial_board \\ "") do 
     cond do 
       row <= 2 ->
         serial_board = serial_board <> "#{board[row][0]} #{board[row][1]} #{board[row][2]}\n"
-        serialize_board(board, row + 1, serial_board)
+        serialized_board(board, row + 1, serial_board)
       true -> serial_board
     end
   end
 
   def serialized(moves) do 
-    populated_board(moves) |> serialize_board
+    populated_board(moves) |> serialized_board
   end
 end

@@ -25,10 +25,12 @@ defmodule PhxTicTacToeWeb.GameController do
     #used for creating new moves
     move_changeset = Move.changeset(%Move{game_id: id, player: game.current_player})
 
-    #get moves to to create board from
+    #create a board
+    moves = Game.moves(id)
+    populated_board = Board.populated_board(moves)
+    serial_board = Board.serialized_board(populated_board)
 
-    #populate board and pass its presentation to the view/template
-    serial_board = Game.moves(id) |> Board.serialized
+    #run game over logic on board
 
     render conn, "show.html", game: game, move_changeset: move_changeset, board: serial_board
   end
