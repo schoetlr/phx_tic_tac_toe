@@ -1,4 +1,8 @@
 defmodule PhxTicTacToe.Board do
+
+  @empty_board %{0 => %{0 => "_", 1 => "_", 2 => "_"},
+      1 => %{0 => "_", 1 => "_", 2 => "_"},
+      2 => %{0 => "_", 1 => "_", 2 => "_"}}
   
   def empty_board do 
     %{0 => %{0 => "_", 1 => "_", 2 => "_"},
@@ -8,21 +12,19 @@ defmodule PhxTicTacToe.Board do
 
   #maybe same problem as below
   #ALSO, probably nothing in moves (query not working)
-  def populated_board(moves) do
-    board = empty_board
-
-    Enum.each moves, fn move ->
-      IO.inspect move
-      IO.puts "in the loop"
-      board = put_in(board, [move.row, move.col], move.player)
+  def populated_board(moves, board \\ @empty_board) do
+    case moves do 
+      [move | tail] -> 
+        board = put_in(board, [move.row, move.col], move.player)
+        populated_board(tail, board)
+      [] ->
+        board
+      _ ->
+        {:error, "This catch all should never happen"}
     end
-
-    board
+    
   end
 
-  #bp not available in Enum.each?
-  #or enum.each not returning the thing
-  #prob use recursion
   def serialize_board(board, row \\ 0, serial_board \\ "") do 
     cond do 
       row <= 2 ->

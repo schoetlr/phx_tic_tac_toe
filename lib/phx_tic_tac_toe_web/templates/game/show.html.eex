@@ -21,4 +21,4 @@
   <%= submit "Submit" %>
 <% end %>
 
-<%= @board %>
+<%= text_to_html @board %>
