@@ -5,6 +5,8 @@
 
 <p>It is <%= @game.current_player %>'s turn.</p>
 
+<p><%= @display_message %></p>
+
 <%= form_for @move_changeset, move_path(@conn, :create), fn f -> %>
   <label>
     Row(0-2): <%= text_input f, :row %>

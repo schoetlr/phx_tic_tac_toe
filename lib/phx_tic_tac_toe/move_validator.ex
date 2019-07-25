@@ -1,10 +1,10 @@
 defmodule PhxTicTacToe.MoveValidator do
 
   def valid_move?(move) do
-    in_bounds?(move) && !exists?(move)
+    inbounds?(move) && !exists?(move)
   end
 
-  def in_bounds?(move) do 
+  def inbounds?(move) do 
 
   end
 
