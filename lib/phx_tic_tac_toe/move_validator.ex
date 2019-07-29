@@ -1,7 +1,6 @@
 defmodule PhxTicTacToe.MoveValidator do
 
-  def valid_move?(move, board) do 
-    {row, col} = move
+  def valid_move?(row, col, board) do 
     current_pos = board[row][col]
 
     cond do 
