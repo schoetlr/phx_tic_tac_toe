@@ -20,6 +20,10 @@ defmodule PhxTicTacToeWeb.ConnCase do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
       import PhxTicTacToeWeb.Router.Helpers
+      alias PhxTicTacToe.Repo
+      import Ecto.Changeset
+      import Ecto.Query, only: [from: 1, from: 2]
+      import PhxTicTacToe.TestHelpers
 
       # The default endpoint for testing
       @endpoint PhxTicTacToeWeb.Endpoint

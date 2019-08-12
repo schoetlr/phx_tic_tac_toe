@@ -16,7 +16,7 @@ defmodule PhxTicTacToeWeb.Router do
   scope "/", PhxTicTacToeWeb do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
+    get "/", GameController, :index
     resources "/games", GameController
     resources "/moves", MoveController, only: [:create]
   end
