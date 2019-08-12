@@ -22,7 +22,6 @@ defmodule PhxTicTacToeWeb.GameControllerTest do
 
   test "creates a game and redirects", %{conn: conn} do 
     conn = post conn, game_path(conn, :create), game: @valid_attrs
-    require IEx; IEx.pry
     assert redirected_to(conn) =~ "/games/"
     assert !!Repo.get_by!(PhxTicTacToe.Game, @valid_attrs)
   end
