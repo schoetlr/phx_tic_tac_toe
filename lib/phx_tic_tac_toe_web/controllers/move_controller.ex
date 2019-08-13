@@ -8,7 +8,7 @@ defmodule PhxTicTacToeWeb.MoveController do
   def create(conn, %{ "move" => move }) do
     { :ok, created_move } = Move.changeset(%Move{}, move) |> Repo.insert()
     
-    redirect(conn, to: game_path(conn, :show, created_move.game_id))
+    redirect(conn, to: game_path(conn, :show, created_move.game_id, move_made: "true"))
   end
 
   defp validate_move(conn, _opts) do

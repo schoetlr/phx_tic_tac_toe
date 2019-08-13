@@ -30,7 +30,8 @@ defmodule PhxTicTacToeWeb.GameController do
     render conn, "show.html", game: game, move_changeset: move_changeset, board: serial_board, display_message: "Move Invalid.  Try again."
   end
 
-  def show(conn, %{ "id" => id}) do 
+  #move_made is passed as a param when a move was written to the database
+  def show(conn, %{ "id" => id, "move_made" => "true"}) do 
     game = Repo.get(Game, id)
 
     #create a board
@@ -52,9 +53,33 @@ defmodule PhxTicTacToeWeb.GameController do
         render conn, "show.html", game: game, move_changeset: move_changeset, board: serial_board, display_message: "It is #{game.current_player}'s turn"
       
     end
-
-
   end
+
+    #if move_made was not passed then we will not switch players
+  def show(conn, %{ "id" => id }) do 
+    game = Repo.get(Game, id)
+
+    #create a board
+    moves = Game.moves(id)
+    populated_board = Board.populated_board(moves)
+    serial_board = Board.serialized_board(populated_board)
+
+    #run game over logic on board
+    #if it isn't over then switch player and display who's turn it is in the message
+    case EndGameLogic.game_over?(populated_board) do 
+      true ->
+        #TODO: need to update game with a winner
+        move_changeset = Move.changeset(%Move{game_id: id, player: game.current_player})
+        render conn, "show.html", game: game, move_changeset: move_changeset, board: serial_board, display_message: "Game Over"
+      false ->
+        #run logic corresponding to the game still being active and 
+        move_changeset = Move.changeset(%Move{game_id: id, player: game.current_player})
+        render conn, "show.html", game: game, move_changeset: move_changeset, board: serial_board, display_message: "It is #{game.current_player}'s turn"
+    end
+  end
+
+
+  
 
   
 
